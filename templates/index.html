@@ -4,29 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Classification</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    .upload-box {
-      margin: 20px auto;
-      padding: 20px;
-      border: 2px dashed #ccc;
-      width: 300px;
-      cursor: pointer;
-    }
-    .upload-box img {
-      max-width: 100%;
-      display: none;
-    }
-    #result {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-  </style>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
   <h1>Image Classification</h1>
@@ -38,42 +17,10 @@
 
   <button onclick="classifyImage()">Classify Image</button>
   <p id="result"></p>
+  <p id="accuracy"></p>
+  <p id="loss"></p>
 
-  <script>
-    let uploadedFile;
-
-    function previewImage(event) {
-      const file = event.target.files[0];
-      if (file) {
-        uploadedFile = file;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const uploadedImage = document.getElementById('uploadedImage');
-          uploadedImage.src = e.target.result;
-          uploadedImage.style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    async function classifyImage() {
-      if (!uploadedFile) {
-        alert("Please upload an image first!");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("image", uploadedFile);
-
-      const response = await fetch("/classify", {
-        method: "POST",
-        body: formData
-      });
-
-      const result = await response.json();
-      document.getElementById("result").textContent = `Prediction: ${result.class}`;
-    }
-  </script>
+  <!-- Link to external JavaScript -->
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
 </html>
-

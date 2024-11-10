@@ -1,0 +1,24 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 50px;
+}
+
+.upload-box {
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  width: 300px;
+  cursor: pointer;
+}
+
+.upload-box img {
+  max-width: 100%;
+  display: none;
+}
+
+#result {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
