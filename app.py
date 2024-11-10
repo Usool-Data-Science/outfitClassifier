@@ -7,14 +7,21 @@ import os
 
 app = Flask(__name__)
 
+student_names = ['Student1 Name1', 'Student2 Name2', 'Student3 Name3']
+
 # Load the model (adjust path as needed)
-MODEL_PATH = 'saved_models/Model 1/Run-1.h5'
+MODEL_PATH = '/static/models/Run-9.h5'
 model = load_model(MODEL_PATH)
 
 # Define image size expected by your model (adjust as necessary)
 IMAGE_SIZE = (120, 90)
 
-@app.route("/classify", methods=["POST"])
+
+@app.route("/", methods=["GET"], strict_slashes=False)
+def home():
+    return render_template('index.html', students=student_names)
+
+@app.route("/classify", methods=["POST"], strict_slashes=False)
 def classify_image():
     if "image" not in request.files:
         return jsonify({"error": "No image uploaded"}), 400
