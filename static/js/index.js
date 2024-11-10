@@ -21,11 +21,11 @@ async function classifyImage() {
   }
 
   const formData = new FormData();
-  formData.append("image", uploadedFile);
+  formData.append('image', uploadedFile);
 
-  const response = await fetch("/classify", {
-    method: "POST",
-    body: formData
+  const response = await fetch('/classify', {
+    method: 'POST',
+    body: formData,
   });
 
   const result = await response.json();
