@@ -12,11 +12,13 @@ app = Flask(__name__)
 student_names = ['Student1 Name1', 'Student2 Name2', 'Student3 Name3']
 
 # Load the model (adjust path as needed)
-MODEL_PATH = os.path.join(os.getcwd(), 'static', 'models', 'Run-1.h5')
+MODEL_PATH = os.path.join(os.getcwd(), 'static', 'models', 'mobilenetv2_outfit_classifier.h5')
+#MODEL_PATH = os.path.join(os.getcwd(), 'static', 'models', 'Run_keras-1.keras')
 model = load_model(MODEL_PATH)
 
 # Define image size expected by your model (adjust as necessary)
-IMAGE_SIZE = (120, 90)
+IMAGE_SIZE = (224, 224)
+BATCH_SIZE = 32
 
 
 @app.route("/", methods=["GET"], strict_slashes=False)
@@ -37,7 +39,7 @@ def classify_image():
     image = np.expand_dims(image, axis=0)  # Add batch dimension
 
     # Predict
-    prediction = model.predict(image)
+    prediction = model.predict(image, batch_size=BATCH_SIZE)
     predicted_class = np.argmax(prediction, axis=1)[0]
     loss, accuracy = model.evaluate(image, np.array([predicted_class]))
     # Map prediction to class labels

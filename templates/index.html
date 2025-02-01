@@ -4,69 +4,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Classification</title>
+  <title>Fashion Outfit Classification</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
-<body class="font-mono text-center p-12 min-h-screen relative bg-cover bg-no-repeat bg-center"
+<body
+  class="font-mono text-center min-h-screen flex flex-col items-center justify-center bg-cover bg-no-repeat bg-center relative"
   style="background-image: url('/static/bgImage.jpg');">
-  <!-- Over lay -->
-  <div class="fixed inset-0 z-1 min-h-screen bg-black opacity-80"></div>
-  <!-- Main content -->
-  <div class="absolute z-10 inset-0 flex flex-col justify-between backdrop-blur-lg">
-    <!-- Header section -->
-    <header class="bg-black opacity-80 w-full p-4">
-      <div class="text-white my-2 mx-auto flex items-center">
-        <div class="w-1/2">
-          <img class="w-16 flex-shrink-0" src="../static/FPELogo.png" />
-        </div>
-        <div class="w-1/2 flex justify-start">
-          <span class="text-md sm:text-3xl lg:text-5xl font-semibold">Fashion Outfit Classification</span>
-        </div>
-      </div>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black opacity-80"></div>
+
+  <!-- Main Container -->
+  <div
+    class="relative z-10 flex flex-col w-full max-w-5xl bg-white bg-opacity-10 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-black bg-opacity-80 w-full p-6 flex items-center justify-between text-white">
+      <img class="w-16" src="../static/FPELogo.png" alt="Logo">
+      <h1 class="text-lg sm:text-3xl lg:text-4xl font-semibold">Fashion Outfit Classification</h1>
     </header>
 
-    <!-- Main section-->
-    <main class="flex-grow-1 border-2 border-gray-400 m-auto h-full
-      flex flex-col gap-8 justify-between items-center m-4 mb-0 w-full p-8 
-      lg:flex-row lg:w-full lg:items-center lg:px-8
-      overflow-auto scrollbar-hidden">
+    <!-- Main Section -->
+    <main class="flex flex-col lg:flex-row p-8 gap-8 text-white">
+
       <!-- Upload Section -->
-      <div class="flex flex-col items-center justify-center
-                  border-b-4 border-gray-500
-                  lg:border-r-4 lg:border-b-0 lg:border-gray-500
-                  backdrop-blur-lg h-full w-full lg:w-1/2">
-        <div class="my-8 p-8 
-        border-2 border-dashed border-gray-400
-        w-72 cursor-pointer" onclick="document.getElementById('imageInput').click();">
-          <p class="text-white font-bold pb-4">Click to upload an image</p>
+      <div
+        class="flex flex-col items-center w-full lg:w-1/2 p-6 border-b-4 lg:border-b-0 lg:border-r-4 border-gray-500">
+        <div
+          class="w-72 p-6 border-2 border-dashed border-gray-400 text-center cursor-pointer hover:border-white transition"
+          onclick="document.getElementById('imageInput').click();">
+          <p class="font-bold pb-4">Click to upload an image</p>
           <img id="uploadedImage" alt="Uploaded Image" class="max-w-full hidden" />
         </div>
         <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="previewImage(event)">
-        <button
-          class="my-4 px-6 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 focus:outline-none max-w-full"
+        <button class="mt-6 px-6 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition"
           onclick="classifyImage()">Classify Image</button>
       </div>
+
       <!-- Result Section -->
-      <div class="flex flex-col justify-center
-      h-full w-full lg:w-1/2 gap-8 backdrop-blur-lg
-      text-white">
-        <span class="text-5xl">RESULT</span>
-        <p id="result" class="text-3xl font-bold mt-6">I am the first result</p>
-        <p id="accuracy" class="text-2xl mt-2">I am the second result</p>
-        <p id="loss" class="text-2xl mt-2">I am the third result</p>
+      <div class="flex flex-col items-center w-full lg:w-1/2 gap-6">
+        <h2 class="text-4xl font-bold">RESULT</h2>
+        <p id="result" class="text-3xl font-semibold">Awaiting classification...</p>
+        <p id="accuracy" class="text-2xl">Accuracy: --%</p>
+        <p id="loss" class="text-2xl">Loss: --%</p>
       </div>
     </main>
 
-    <footer class="flex flex-col justify-center items-center
-    text-white bg-black px-2 pb-4 ">
-      <p class="text-xl font-bold pb-2">Courtesy: </p>
-      <div class="text-md font-medium">
-        <p>ADEKANMIN JOHN ADEBOWALE - HR20220106813</p>
-        <p>ADESOLA SAMSUDEEN OLAMILEKAN - HR20220106618</p>
-      </div>
-
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-80 text-white text-center py-4">
+      <p class="text-lg font-bold">Courtesy:</p>
+      <p class="text-md font-medium">ADEKANMIN JOHN ADEBOWALE - HR20220106813</p>
+      <p class="text-md font-medium">ADESOLA SAMSUDEEN OLAMILEKAN - HR20220106618</p>
     </footer>
   </div>
 

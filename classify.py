@@ -7,7 +7,6 @@ from tensorflow.keras.preprocessing import image
 BASE_DIR = os.path.join(os.getcwd(), 'drive', 'MyDrive', 'Outfit Classification')
 # Updated model path to .h5 format
 MODEL_DIR = os.path.join(BASE_DIR, 'saved_models', 'Model 1', 'Run-1.h5')
-#MODEL_DIR = os.path.join(BASE_DIR, 'saved_models', 'Model 1', 'Run-1.keras')  # Ensure model is saved with .keras extension
 
 # Function to classify a single image
 def classify_image(image_path, model_path=MODEL_DIR):
